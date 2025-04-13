@@ -2,6 +2,8 @@ import pytest
 from selene import browser
 import os
 
+from selenium import webdriver
+
 
 @pytest.fixture(scope='function', autouse=True)
 def browser_management():
@@ -9,6 +11,12 @@ def browser_management():
         'base_url', 'https://www.wikipedia.org'
     )
     browser.config.driver_name = os.getenv('driver_name', 'chrome')
+
+    """Запуск драйвера в невидимом режиме"""
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    browser.config.driver_options = chrome_options
+
     browser.config.hold_driver_at_exit = (
         os.getenv('hold_driver_at_exit', 'false').lower() == 'true'
     )
