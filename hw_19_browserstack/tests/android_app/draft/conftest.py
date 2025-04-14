@@ -3,7 +3,7 @@ from appium.options.android import UiAutomator2Options
 from selene import browser
 import os
 
-from config import settings
+from selenium import webdriver
 
 
 @pytest.fixture(scope='function', autouse=True)
@@ -25,8 +25,8 @@ def mobile_management():
 
                                                            # Set your access credentials
                                                            # со страницы https://app-automate.browserstack.com/dashboard/v2/quick-start/get-started
-                                                           "userName": settings.BROWSERSTACK_USERNAME,
-                                                           "accessKey": settings.BROWSERSTACK_ACCESSKEY
+                                                           "userName": "bsuser_siHW2q",
+                                                           "accessKey": "w9gfPWcizNSEgHCSGyqT"
                                                        }
                                                        })
 
@@ -36,6 +36,36 @@ def mobile_management():
     browser.config.driver_options = options
 
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
+
+    '''
+    #BASE_URL тут нет (в мобилке)
+    browser.config.base_url = os.getenv(
+        'base_url', 'https://www.wikipedia.org'
+    )
+
+    #CONFIG DRIVER NAME не нужен
+    browser.config.driver_name = os.getenv('driver_name', 'chrome')
+    '''
+
+    '''
+    #тоже не нужно
+    """Запуск драйвера в невидимом режиме"""
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    browser.config.driver_options = chrome_options
+    '''
+
+    '''
+    browser.config.hold_driver_at_exit = (
+        os.getenv('hold_driver_at_exit', 'false').lower() == 'true'
+    )
+    '''
+
+    '''
+    #НЕ НУЖНО, т.к. разрешение определяется устройством
+    browser.config.window_width = os.getenv('window_width', '1024')
+    browser.config.window_height = os.getenv('window_height', '768')
+    '''
 
 
     yield

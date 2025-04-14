@@ -1,5 +1,6 @@
 import pytest
 from appium.options.android import UiAutomator2Options
+from appium.options.ios import XCUITestOptions
 from selene import browser
 import os
 
@@ -8,11 +9,11 @@ from config import settings
 
 @pytest.fixture(scope='function', autouse=True)
 def mobile_management():
-    options = UiAutomator2Options().load_capabilities({"""Это driver options"""
+    options = XCUITestOptions().load_capabilities({"""Это driver options"""
                                                        # Specify device and os_version for testing
-                                                       "platformName": "android",
-                                                       "platformVersion": "9.0",
-                                                       "deviceName": "Google Pixel 3",
+                                                       "platformName": "ios",
+                                                       "platformVersion": "16",
+                                                       "deviceName": "iPhone 14 Pro Max",
 
                                                        # Set URL of the application under test
                                                        "app": "bs://sample.app",
@@ -20,7 +21,7 @@ def mobile_management():
                                                        # Set other BrowserStack capabilities
                                                        'bstack:options': {
                                                            "projectName": "First Python project",
-                                                           "buildName": "browserstack-build-1",
+                                                           "buildName": "browserstack-build-ios",
                                                            "sessionName": "BStack first_test",
 
                                                            # Set your access credentials
@@ -37,7 +38,7 @@ def mobile_management():
 
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
 
-
+    
     yield
 
     browser.quit()
