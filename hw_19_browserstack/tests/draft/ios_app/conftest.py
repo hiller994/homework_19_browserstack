@@ -5,6 +5,7 @@ from selene import browser
 import os
 
 from config import settings
+from utils import attach
 
 
 @pytest.fixture(scope='function', autouse=True)
@@ -40,5 +41,8 @@ def mobile_management():
 
     
     yield
+
+    attach.add_logs(browser)
+    attach.add_screenshot(browser)
 
     browser.quit()

@@ -4,6 +4,8 @@ import os
 
 from selenium import webdriver
 
+from utils import attach
+
 
 @pytest.fixture(scope='function', autouse=True)
 def browser_management():
@@ -24,6 +26,9 @@ def browser_management():
     browser.config.window_height = os.getenv('window_height', '768')
     browser.config.timeout = float(os.getenv('timeout', '3.0'))
 
-    yield
+    yield browser
 
-    ...
+    attach.add_logs(browser)
+    attach.add_screenshot(browser)
+
+    browser.quit()
