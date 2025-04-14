@@ -1,5 +1,8 @@
 pytest
-selene==2.0.0rc9
 allure-pytest
-appium-python-client
-pydantic-setting
+selene==2.0.0rc9
+Appium-Python-Client
+requests
+python-dotenv
+pydantic
+pydantic-settings
