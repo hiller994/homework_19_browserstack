@@ -2,9 +2,9 @@ import allure
 import pytest
 from selene import browser
 from appium import webdriver
-
 import config
 import utils
+
 from config import load_config, get_options
 from utils import attach
 
@@ -12,7 +12,7 @@ from utils import attach
 @pytest.fixture(scope='function', autouse=True)
 def mobile_management():
     settings = load_config()
-    attach.view_environment() # ДЛЯ АЛЛЮРА
+    attach.view_environment() # ДЛЯ АЛЛЮРА, чтобы выводил выбранною мной среду перед запуском
     options = get_options(settings)
 
     with allure.step('init app session'):

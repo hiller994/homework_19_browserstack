@@ -1,3 +1,5 @@
+import time
+
 import allure
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have, be
@@ -14,8 +16,8 @@ def test_search():
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/page_list_item_title")).click()
     with allure.step("Проверка открытия страницы"):
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/closeButton")).click() #сначала закрываем всплывашку
-        browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/page_web_view")).should(be.visible)
-'''
+        browser.element((AppiumBy.CLASS_NAME, "android.widget.TextView")).should(have.text('Android'))
+
 def test_tab_saved():
     with allure.step('Пропускаем приветственную страницу'):
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")).click()
@@ -39,5 +41,4 @@ def test_tab_explore():
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/nav_tab_explore")).click()
     with allure.step("Проверяем открытие раздела 'Saved'"):
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/search_container")).should(be.visible)
-'''
 
