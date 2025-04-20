@@ -1,4 +1,4 @@
-.env
+draft/draft2/.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -130,7 +130,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+draft/draft2/.env
 .venv
 env/
 venv/

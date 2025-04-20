@@ -1,11 +1,10 @@
 import pytest
-from appium.options.android import UiAutomator2Options
 from appium.options.ios import XCUITestOptions
 from selene import browser
 import os
 
-from config import settings
-from utils import attach
+from draft.config0 import settings
+from draft.draft2.utils import attach
 
 
 @pytest.fixture(scope='function', autouse=True)
